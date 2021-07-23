@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '7-hfgds%!$ni7k3ylcm=o40^y6c#9kg8-r*o)n$-40qe_o6vg#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['54.233.152.85','127.0.0.10']
 
 
 # Application definition
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'product.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'product',
+        'USER': 'microsservice1',
+        'PASSWORD': 'microsservice1teste',
+        'HOST': 'product.cdwiptrwmykf.sa-east-1.rds.amazonaws.com',
+        'PORT': '5424'
     }
 }
 
@@ -124,3 +128,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '/var/www/html/product/media/'
 STATIC_ROOT = '/var/www/html/product/static/'
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass
